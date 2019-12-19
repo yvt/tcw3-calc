@@ -18,11 +18,7 @@ impl WndListener for MyWndListener {
 }
 
 fn main() {
-    // Enable logging only in debug builds
-    #[cfg(debug_assertions)]
-    {
-        env_logger::init();
-    }
+    simple_logger::init().unwrap();
 
     debug!("Initializing WM");
     let wm = pal::Wm::global();
