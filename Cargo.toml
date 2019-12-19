@@ -1,0 +1,37 @@
+cargo-features = ["profile-overrides"]  # Enable the use of `[profile.dev.overrides]`
+
+[workspace]
+
+[profile.release]
+debug = true
+panic = "abort"
+lto = true
+
+[profile.dev.package]
+# A software-based compositor (`swrast`) is used when other backends are not
+# available for some reason. This is horrendously slow on debug builds and hurts
+# developer experience. To mitigate this issue, always enable optimization for
+# `tcw3_pal`. This isn't as fast as the release build due to lack of LTO, but
+# at least it's usable.
+tcw3_pal = { opt-level = 3 }
+
+[package]
+name = "tcw3_calc"
+version = "0.1.0"
+authors = ["tcpp"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tcw3_calc_meta = { path = "meta" }
+env_logger = "0.7.0"
+
+[dependencies.tcw3]
+git = "https://github.com/yvt/Stella2.git"
+rev = "62df5d4f96995c0fd46f27b31d99d582d6c3eb07"
+
+[dependencies.log]
+version = "0.4"
+# Disable logging in release builds
+features = ["release_max_level_off"]

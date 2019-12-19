@@ -1,0 +1,17 @@
+use tcw3::{
+    uicore::HView,
+    ui::{layouts::TableLayout, theming::Manager, views::Label},
+    pal,
+};
+
+comp crate::MainView {
+    const style_manager: &'static Manager { set; }
+    const wm: pal::Wm { set; }
+
+    const label = Label {
+        const style_manager = |style_manager as x| x;
+        prop text = || "hello world!";
+    };
+
+    const view: HView = |label.view| view;
+}
