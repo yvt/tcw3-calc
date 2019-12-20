@@ -105,6 +105,13 @@ comp crate::MainView {
         const op = || '=';
     };
 
+    on (
+        btn_00.activated, btn_01.activated, btn_02.activated, btn_03.activated,
+        btn_10.activated, btn_11.activated, btn_12.activated, btn_13.activated,
+        btn_20.activated, btn_21.activated, btn_22.activated, btn_23.activated,
+        btn_30.activated, btn_31.activated, btn_32.activated, btn_33.activated,
+    ) |&this, event.op| this.handle_op(op);
+
     const buttons = HView {
         const flags = || Default::default();
 
@@ -144,6 +151,9 @@ comp crate::CalcButton {
     const style_manager: &'static Manager { set; }
     const wm: pal::Wm { set; }
     const op: char { set; get; }
+
+    event activated(op: char);
+    on (button.activated) |&this, op| this.raise_activated(op);
 
     const button = Button {
         const style_manager = |style_manager as x| x;

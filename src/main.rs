@@ -10,6 +10,12 @@ use tcw3::{
 tcw3_calc_meta::designer_impl! { crate::MainView }
 tcw3_calc_meta::designer_impl! { crate::CalcButton }
 
+impl MainView {
+    fn handle_op(&self, op: char) {
+        dbg!(op);
+    }
+}
+
 struct MyWndListener;
 
 impl WndListener for MyWndListener {
