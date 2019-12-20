@@ -1,7 +1,11 @@
 use std::cell::RefCell;
 use tcw3::{
     uicore::HView,
-    ui::{layouts::TableLayout, theming::Manager, views::{Button, Label}},
+    ui::{
+        layouts::TableLayout,
+        theming::{Manager, StyledBox},
+        views::{Button, Label},
+    },
     pal,
 };
 
@@ -132,16 +136,23 @@ comp crate::MainView {
         };
     };
 
-    const view = HView {
-        const flags = || Default::default();
+    const wrapper = StyledBox {
+        const style_manager = |style_manager as x| x;
+        const view_flags = || Default::default();
 
-        prop layout = |buttons, label.view as label| {
-            TableLayout::stack_vert(vec![
-                (label, AlignFlags::LEFT | AlignFlags::VERT_JUSTIFY),
-                (buttons, AlignFlags::JUSTIFY),
-            ])
+        prop subview_generic = HView {
+            const flags = || Default::default();
+
+            prop layout = |buttons, label.view as label| {
+                TableLayout::stack_vert(vec![
+                    (label, AlignFlags::LEFT | AlignFlags::VERT_JUSTIFY),
+                    (buttons, AlignFlags::JUSTIFY),
+                ])
+            };
         };
     };
+
+    const view: HView = |wrapper.view| view;
 }
 
 comp crate::CalcButton {
