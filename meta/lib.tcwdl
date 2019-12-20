@@ -88,19 +88,40 @@ comp crate::MainView {
     const btn_30 = CalcButton {
         const style_manager = |style_manager as x| x;
         const wm = |wm| wm;
-        const op = || '±';
+        const op = || '1';
     };
     const btn_31 = CalcButton {
         const style_manager = |style_manager as x| x;
         const wm = |wm| wm;
-        const op = || '0';
+        const op = || '2';
     };
     const btn_32 = CalcButton {
         const style_manager = |style_manager as x| x;
         const wm = |wm| wm;
-        const op = || '.';
+        const op = || '3';
     };
     const btn_33 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '+';
+    };
+
+    const btn_40 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '±';
+    };
+    const btn_41 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '0';
+    };
+    const btn_42 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '.';
+    };
+    const btn_43 = CalcButton {
         const style_manager = |style_manager as x| x;
         const wm = |wm| wm;
         const op = || '=';
@@ -111,6 +132,7 @@ comp crate::MainView {
         btn_10.activated, btn_11.activated, btn_12.activated, btn_13.activated,
         btn_20.activated, btn_21.activated, btn_22.activated, btn_23.activated,
         btn_30.activated, btn_31.activated, btn_32.activated, btn_33.activated,
+        btn_40.activated, btn_41.activated, btn_42.activated, btn_43.activated,
     ) |&this, event.op| this.handle_op(op);
 
     const buttons = HView {
@@ -121,6 +143,7 @@ comp crate::MainView {
             btn_10.view as v10, btn_11.view as v11, btn_12.view as v12, btn_13.view as v13,
             btn_20.view as v20, btn_21.view as v21, btn_22.view as v22, btn_23.view as v23,
             btn_30.view as v30, btn_31.view as v31, btn_32.view as v32, btn_33.view as v33,
+            btn_40.view as v40, btn_41.view as v41, btn_42.view as v42, btn_43.view as v43,
         | {
             TableLayout::new(
                 vec![
@@ -128,6 +151,7 @@ comp crate::MainView {
                     v10, v11, v12, v13,
                     v20, v21, v22, v23,
                     v30, v31, v32, v33,
+                    v40, v41, v42, v43,
                 ]
                     .into_iter()
                     .enumerate()
