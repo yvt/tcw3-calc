@@ -31,6 +31,10 @@ log = "0.4"
 git = "https://github.com/yvt/Stella2.git"
 rev = "9be823965b2f62955fd48e82f392d4ea07d8808b"
 
+[dependencies.cggeom]
+git = "https://github.com/yvt/Stella2.git"
+rev = "9be823965b2f62955fd48e82f392d4ea07d8808b"
+
 [dependencies.simple_logger]
 version = "1.3.0"
 default-features = false

@@ -1627,6 +1627,7 @@ dependencies = [
 name = "tcw3_calc"
 version = "0.1.0"
 dependencies = [
+ "cggeom 0.1.0 (git+https://github.com/yvt/Stella2.git?rev=9be823965b2f62955fd48e82f392d4ea07d8808b)",
  "log 0.4.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "simple_logger 1.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "tcw3 0.1.0 (git+https://github.com/yvt/Stella2.git?rev=9be823965b2f62955fd48e82f392d4ea07d8808b)",

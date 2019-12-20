@@ -3,8 +3,11 @@ use tcw3::{
     pal,
     pal::prelude::*,
     uicore::{HWnd, WndListener},
-    ui::{AlignFlags, layouts::TableLayout},
+    ui::{AlignFlags, layouts::TableLayout, theming::ClassSet},
 };
+
+mod stylesheet;
+use self::stylesheet::elem_id;
 
 tcw3_calc_meta::designer_impl! { crate::MainView }
 tcw3_calc_meta::designer_impl! { crate::CalcButton }
@@ -133,7 +136,7 @@ fn main() {
 
     // Register the application's custom stylesheet
     let style_manager = tcw3::ui::theming::Manager::global(wm);
-    // TODO
+    stylesheet::register_stylesheet(style_manager);
 
     let wnd = HWnd::new(wm);
     wnd.set_visibility(true);

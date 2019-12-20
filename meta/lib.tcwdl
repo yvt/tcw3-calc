@@ -22,6 +22,13 @@ comp crate::MainView {
         prop text = |calc_state| calc_state.value.clone();
     };
 
+    const label_wrapper = StyledBox {
+        const style_manager = |style_manager as x| x;
+        const view_flags = || Default::default();
+        prop class_set = || elem_id::LABEL;
+        prop subview_generic = |label.view| view;
+    };
+
     const btn_00 = CalcButton {
         const style_manager = |style_manager as x| x;
         const wm = |wm| wm;
@@ -157,6 +164,7 @@ comp crate::MainView {
                     .enumerate()
                     .map(|(i, v)| (v, [i % 4, i / 4], AlignFlags::JUSTIFY))
             )
+                .with_uniform_margin(6.0)
         };
     };
 
@@ -164,12 +172,14 @@ comp crate::MainView {
         const style_manager = |style_manager as x| x;
         const view_flags = || Default::default();
 
+        prop class_set = || elem_id::WRAPPER;
+
         prop subview_generic = HView {
             const flags = || Default::default();
 
-            prop layout = |buttons, label.view as label| {
+            prop layout = |buttons, label_wrapper.view as label| {
                 TableLayout::stack_vert(vec![
-                    (label, AlignFlags::LEFT | AlignFlags::VERT_JUSTIFY),
+                    (label, AlignFlags::JUSTIFY),
                     (buttons, AlignFlags::JUSTIFY),
                 ])
             };
@@ -189,6 +199,11 @@ comp crate::CalcButton {
 
     const button = Button {
         const style_manager = |style_manager as x| x;
+        prop class_set = |op| match op {
+            'c' | 'C' | '⌫' | '÷' |
+            '×' | '−' | '+' | '=' => ClassSet::BUTTON | elem_id::RED,
+            _ => ClassSet::BUTTON,
+        };
         prop caption = |op| if op == 'c' { "CE".to_string() } else { op.to_string() };
     };
 
