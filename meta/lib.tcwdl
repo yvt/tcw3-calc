@@ -1,17 +1,154 @@
+use std::cell::Cell;
 use tcw3::{
     uicore::HView,
-    ui::{layouts::TableLayout, theming::Manager, views::Label},
+    ui::{layouts::TableLayout, theming::Manager, views::{Button, Label}},
     pal,
 };
+
+use crate::CalcButton;
 
 comp crate::MainView {
     const style_manager: &'static Manager { set; }
     const wm: pal::Wm { set; }
 
+    prop value: String = || "0".to_string();
+    const operand: Cell<f64> = || Cell::new(0.0);
+    const operator: Cell<char> = || Cell::new('C');
+    const in_num: Cell<bool> = || Cell::new(false);
+
     const label = Label {
         const style_manager = |style_manager as x| x;
-        prop text = || "hello world!";
+        prop text = |value| value;
     };
 
-    const view: HView = |label.view| view;
+    const btn_00 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || 'c';
+    };
+    const btn_01 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || 'C';
+    };
+    const btn_02 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '⌫';
+    };
+    const btn_03 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '÷';
+    };
+
+    const btn_10 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '7';
+    };
+    const btn_11 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '8';
+    };
+    const btn_12 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '9';
+    };
+    const btn_13 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '×';
+    };
+
+    const btn_20 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '4';
+    };
+    const btn_21 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '5';
+    };
+    const btn_22 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '6';
+    };
+    const btn_23 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '−';
+    };
+
+    const btn_30 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '±';
+    };
+    const btn_31 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '0';
+    };
+    const btn_32 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '.';
+    };
+    const btn_33 = CalcButton {
+        const style_manager = |style_manager as x| x;
+        const wm = |wm| wm;
+        const op = || '=';
+    };
+
+    const buttons = HView {
+        const flags = || Default::default();
+
+        prop layout = |
+            btn_00.view as v00, btn_01.view as v01, btn_02.view as v02, btn_03.view as v03,
+            btn_10.view as v10, btn_11.view as v11, btn_12.view as v12, btn_13.view as v13,
+            btn_20.view as v20, btn_21.view as v21, btn_22.view as v22, btn_23.view as v23,
+            btn_30.view as v30, btn_31.view as v31, btn_32.view as v32, btn_33.view as v33,
+        | {
+            TableLayout::new(
+                vec![
+                    v00, v01, v02, v03,
+                    v10, v11, v12, v13,
+                    v20, v21, v22, v23,
+                    v30, v31, v32, v33,
+                ]
+                    .into_iter()
+                    .enumerate()
+                    .map(|(i, v)| (v, [i % 4, i / 4], AlignFlags::JUSTIFY))
+            )
+        };
+    };
+
+    const view = HView {
+        const flags = || Default::default();
+
+        prop layout = |buttons, label.view as label| {
+            TableLayout::stack_vert(vec![
+                (label, AlignFlags::LEFT | AlignFlags::VERT_JUSTIFY),
+                (buttons, AlignFlags::JUSTIFY),
+            ])
+        };
+    };
+}
+
+comp crate::CalcButton {
+    const style_manager: &'static Manager { set; }
+    const wm: pal::Wm { set; }
+    const op: char { set; get; }
+
+    const button = Button {
+        const style_manager = |style_manager as x| x;
+        prop caption = |op| if op == 'c' { "CE".to_string() } else { op.to_string() };
+    };
+
+    const view: HView = |button.view| view;
 }

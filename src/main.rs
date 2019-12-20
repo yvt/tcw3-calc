@@ -1,13 +1,14 @@
+use std::cell::Cell;
 use log::debug;
 use tcw3::{
     pal,
     pal::prelude::*,
     uicore::{HWnd, WndListener},
+    ui::{AlignFlags, layouts::TableLayout},
 };
 
-tcw3_calc_meta::designer_impl! {
-    crate::MainView
-}
+tcw3_calc_meta::designer_impl! { crate::MainView }
+tcw3_calc_meta::designer_impl! { crate::CalcButton }
 
 struct MyWndListener;
 
