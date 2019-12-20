@@ -1,24 +1,21 @@
-use std::cell::Cell;
+use std::cell::RefCell;
 use tcw3::{
     uicore::HView,
     ui::{layouts::TableLayout, theming::Manager, views::{Button, Label}},
     pal,
 };
 
-use crate::CalcButton;
+use crate::{CalcButton, CalcState};
 
 comp crate::MainView {
     const style_manager: &'static Manager { set; }
     const wm: pal::Wm { set; }
 
-    prop value: String = || "0".to_string();
-    const operand: Cell<f64> = || Cell::new(0.0);
-    const operator: Cell<char> = || Cell::new('C');
-    const in_num: Cell<bool> = || Cell::new(false);
+    prop calc_state: CalcState = || CalcState::new();
 
     const label = Label {
         const style_manager = |style_manager as x| x;
-        prop text = |value| value;
+        prop text = |calc_state| calc_state.value.clone();
     };
 
     const btn_00 = CalcButton {
