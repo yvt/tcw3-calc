@@ -142,6 +142,12 @@ fn main() {
     wnd.set_visibility(true);
     wnd.set_listener(MyWndListener);
 
+    if cfg!(target_os = "macos") {
+        wnd.set_caption("");
+    } else {
+        wnd.set_caption("Calculator");
+    }
+
     // Create and attach the main view
     let main_view = MainViewBuilder::new()
         .with_wm(wm)

@@ -19,8 +19,8 @@ fn new_custom_stylesheet() -> impl Stylesheet {
     use self::elem_id::*;
 
     use std::f32::NAN;
-    const BUTTON_SIZE: [f32; 2] = [35.0, 35.0];
-    const BUTTON_MARGIN: f32 = 2.0;
+    const BUTTON_SIZE: [f32; 2] = [37.0, 37.0];
+    const BUTTON_MARGIN: f32 = 3.0;
 
     stylesheet! {
         ([.BUTTON]) (priority = 100) {
@@ -45,7 +45,7 @@ fn new_custom_stylesheet() -> impl Stylesheet {
         },
         ([#RED.BUTTON]) (priority = 200) {
             layer_img[1]: Some(himg_from_rounded_rect(
-                [0.96, 0.34, 0.15, 1.0].into(),
+                [0.96, 0.64, 0.15, 1.0].into(),
                 [[(BUTTON_SIZE[0] - BUTTON_MARGIN) * 0.5; 2]; 4]
             )),
         },
@@ -63,8 +63,21 @@ fn new_custom_stylesheet() -> impl Stylesheet {
         },
 
         ([#WRAPPER]) (priority = 100) {
-            num_layers: 1,
-            layer_bg_color[0]: [0.0, 0.0, 0.0, 1.0].into(),
+            num_layers: 2,
+
+            layer_bg_color[0]: [0.1, 0.1, 0.1, 0.3].into(),
+            layer_metrics[0]: Metrics {
+                // Extend to fill the titlebar
+                margin: [-100.0, 0.0, 0.0, 0.0],
+                .. Metrics::default()
+            },
+
+            layer_bg_color[1]: [0.1, 0.1, 0.1, 0.3].into(),
+            layer_metrics[1]: Metrics {
+                margin: [46.0, 0.0, 0.0, 0.0],
+                .. Metrics::default()
+            },
+
             subview_metrics[Role::Generic]: Metrics {
                 margin: [6.0, 0.0, 4.0, 0.0],
                 .. Metrics::default()
@@ -74,7 +87,7 @@ fn new_custom_stylesheet() -> impl Stylesheet {
         ([#LABEL]) (priority = 100) {
             num_layers: 1,
             layer_img[0]: Some(himg_from_rounded_rect(
-                [0.34, 0.92, 0.63, 1.0].into(), [[4.0; 2]; 4]
+                [0.54, 0.92, 0.83, 1.0].into(), [[4.0; 2]; 4]
             )),
             layer_center[0]: box2! { point: [0.5, 0.5] },
             layer_metrics[0]: Metrics {
