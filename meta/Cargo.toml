@@ -6,11 +6,11 @@ edition = "2018"
 
 [build-dependencies.tcw3_designer]
 git = "https://github.com/yvt/Stella2.git"
-rev = "8b6a6e4852db74ba0114bfc3a4cf23423d61dd92"
+rev = "6c702eae26948b1b2d66081874734ddbea65eb23"
 
 [build-dependencies.tcw3_meta]
 git = "https://github.com/yvt/Stella2.git"
-rev = "8b6a6e4852db74ba0114bfc3a4cf23423d61dd92"
+rev = "6c702eae26948b1b2d66081874734ddbea65eb23"
 
 [lib]
 path = "lib.rs"

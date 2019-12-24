@@ -24,7 +24,6 @@ comp crate::MainView {
 
     const label_wrapper = StyledBox::new! {
         style_manager = get!(style_manager),
-        view_flags = Default::default(),
         class_set = elem_id::LABEL,
         subview_generic = get!(label.view),
     };
@@ -65,8 +64,6 @@ comp crate::MainView {
     }
 
     const buttons = HView::new! {
-        flags = Default::default(),
-
         layout = TableLayout::new(
             [
                 get!(&b00.view), get!(&b01.view), get!(&b02.view), get!(&b03.view),
@@ -84,13 +81,10 @@ comp crate::MainView {
 
     const wrapper = StyledBox::new! {
         style_manager = get!(style_manager),
-        view_flags = Default::default(),
 
         class_set = elem_id::WRAPPER,
 
         subview_generic = HView::new! {
-            flags = Default::default(),
-
             layout = TableLayout::stack_vert(vec![
                 (get!(label_wrapper.view), AlignFlags::JUSTIFY),
                 (get!(buttons), AlignFlags::JUSTIFY),
