@@ -28,11 +28,11 @@ tcw3_calc_meta = { path = "meta" }
 
 [dependencies.tcw3]
 git = "https://github.com/yvt/Stella2.git"
-rev = "346627ef293cd664c25fa370e1b7ebcc1261bb7d"
+rev = "8b6a6e4852db74ba0114bfc3a4cf23423d61dd92"
 
 [dependencies.cggeom]
 git = "https://github.com/yvt/Stella2.git"
-rev = "346627ef293cd664c25fa370e1b7ebcc1261bb7d"
+rev = "8b6a6e4852db74ba0114bfc3a4cf23423d61dd92"
 
 [dependencies.log]
 version = "0.4"

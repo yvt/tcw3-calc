@@ -15,124 +15,44 @@ comp crate::MainView {
     const style_manager: &'static Manager { set; }
     const wm: pal::Wm { set; }
 
-    prop calc_state: CalcState = || CalcState::new();
+    prop calc_state: CalcState = CalcState::new();
 
-    const label = Label {
-        const style_manager = |style_manager as x| x;
-        prop text = |calc_state| calc_state.value.clone();
-    };
-
-    const label_wrapper = StyledBox {
-        const style_manager = |style_manager as x| x;
-        const view_flags = || Default::default();
-        prop class_set = || elem_id::LABEL;
-        prop subview_generic = |label.view| view;
+    const label = Label::new! {
+        style_manager = get!(style_manager),
+        text = get!(&calc_state).value.clone(),
     };
 
-    const btn_00 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || 'c';
-    };
-    const btn_01 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || 'C';
-    };
-    const btn_02 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '⌫';
-    };
-    const btn_03 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '÷';
+    const label_wrapper = StyledBox::new! {
+        style_manager = get!(style_manager),
+        view_flags = Default::default(),
+        class_set = elem_id::LABEL,
+        subview_generic = get!(label.view),
     };
 
-    const btn_10 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '7';
-    };
-    const btn_11 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '8';
-    };
-    const btn_12 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '9';
-    };
-    const btn_13 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '×';
-    };
+    const btn_00 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = 'c' };
+    const btn_01 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = 'C' };
+    const btn_02 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '⌫' };
+    const btn_03 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '÷' };
 
-    const btn_20 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '4';
-    };
-    const btn_21 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '5';
-    };
-    const btn_22 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '6';
-    };
-    const btn_23 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '−';
-    };
+    const btn_10 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '7' };
+    const btn_11 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '8' };
+    const btn_12 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '9' };
+    const btn_13 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '×' };
 
-    const btn_30 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '1';
-    };
-    const btn_31 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '2';
-    };
-    const btn_32 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '3';
-    };
-    const btn_33 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '+';
-    };
+    const btn_20 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '4' };
+    const btn_21 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '5' };
+    const btn_22 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '6' };
+    const btn_23 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '−' };
 
-    const btn_40 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '±';
-    };
-    const btn_41 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '0';
-    };
-    const btn_42 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '.';
-    };
-    const btn_43 = CalcButton {
-        const style_manager = |style_manager as x| x;
-        const wm = |wm| wm;
-        const op = || '=';
-    };
+    const btn_30 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '1' };
+    const btn_31 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '2' };
+    const btn_32 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '3' };
+    const btn_33 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '+' };
+
+    const btn_40 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '±' };
+    const btn_41 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '0' };
+    const btn_42 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '.' };
+    const btn_43 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '=' };
 
     on (
         btn_00.activated, btn_01.activated, btn_02.activated, btn_03.activated,
@@ -140,53 +60,45 @@ comp crate::MainView {
         btn_20.activated, btn_21.activated, btn_22.activated, btn_23.activated,
         btn_30.activated, btn_31.activated, btn_32.activated, btn_33.activated,
         btn_40.activated, btn_41.activated, btn_42.activated, btn_43.activated,
-    ) |&this, event.op| this.handle_op(op);
+    ) {
+        get!(&this).handle_op(get!(event.op));
+    }
 
-    const buttons = HView {
-        const flags = || Default::default();
+    const buttons = HView::new! {
+        flags = Default::default(),
 
-        prop layout = |
-            btn_00.view as v00, btn_01.view as v01, btn_02.view as v02, btn_03.view as v03,
-            btn_10.view as v10, btn_11.view as v11, btn_12.view as v12, btn_13.view as v13,
-            btn_20.view as v20, btn_21.view as v21, btn_22.view as v22, btn_23.view as v23,
-            btn_30.view as v30, btn_31.view as v31, btn_32.view as v32, btn_33.view as v33,
-            btn_40.view as v40, btn_41.view as v41, btn_42.view as v42, btn_43.view as v43,
-        | {
-            TableLayout::new(
-                vec![
-                    v00, v01, v02, v03,
-                    v10, v11, v12, v13,
-                    v20, v21, v22, v23,
-                    v30, v31, v32, v33,
-                    v40, v41, v42, v43,
-                ]
-                    .into_iter()
-                    .enumerate()
-                    .map(|(i, v)| (v, [i % 4, i / 4], AlignFlags::JUSTIFY))
-            )
-                .with_uniform_margin(6.0)
-        };
+        layout = TableLayout::new(
+            vec![
+                get!(btn_00.view), get!(btn_01.view), get!(btn_02.view), get!(btn_03.view),
+                get!(btn_10.view), get!(btn_11.view), get!(btn_12.view), get!(btn_13.view),
+                get!(btn_20.view), get!(btn_21.view), get!(btn_22.view), get!(btn_23.view),
+                get!(btn_30.view), get!(btn_31.view), get!(btn_32.view), get!(btn_33.view),
+                get!(btn_40.view), get!(btn_41.view), get!(btn_42.view), get!(btn_43.view),
+            ]
+                .into_iter()
+                .enumerate()
+                .map(|(i, v)| (v, [i % 4, i / 4], AlignFlags::JUSTIFY))
+        )
+            .with_uniform_margin(6.0),
     };
 
-    const wrapper = StyledBox {
-        const style_manager = |style_manager as x| x;
-        const view_flags = || Default::default();
+    const wrapper = StyledBox::new! {
+        style_manager = get!(style_manager),
+        view_flags = Default::default(),
 
-        prop class_set = || elem_id::WRAPPER;
+        class_set = elem_id::WRAPPER,
 
-        prop subview_generic = HView {
-            const flags = || Default::default();
+        subview_generic = HView::new! {
+            flags = Default::default(),
 
-            prop layout = |buttons, label_wrapper.view as label| {
-                TableLayout::stack_vert(vec![
-                    (label, AlignFlags::JUSTIFY),
-                    (buttons, AlignFlags::JUSTIFY),
-                ])
-            };
-        };
+            layout = TableLayout::stack_vert(vec![
+                (get!(label_wrapper.view), AlignFlags::JUSTIFY),
+                (get!(buttons), AlignFlags::JUSTIFY),
+            ]),
+        },
     };
 
-    const view: HView = |wrapper.view| view;
+    const view: HView = get!(wrapper.view);
 }
 
 comp crate::CalcButton {
@@ -195,17 +107,17 @@ comp crate::CalcButton {
     const op: char { set; get; }
 
     event activated(op: char);
-    on (button.activated) |&this, op| this.raise_activated(op);
+    on (button.activated) { get!(&this).raise_activated(get!(op)); }
 
-    const button = Button {
-        const style_manager = |style_manager as x| x;
-        prop class_set = |op| match op {
+    const button = Button::new! {
+        style_manager = get!(style_manager),
+        class_set = match get!(op) {
             'c' | 'C' | '⌫' | '÷' |
             '×' | '−' | '+' | '=' => ClassSet::BUTTON | elem_id::RED,
             _ => ClassSet::BUTTON,
-        };
-        prop caption = |op| if op == 'c' { "CE".to_string() } else { op.to_string() };
+        },
+        caption = if get!(op) == 'c' { "CE".to_string() } else { get!(op).to_string() },
     };
 
-    const view: HView = |button.view| view;
+    const view: HView = get!(button.view);
 }
