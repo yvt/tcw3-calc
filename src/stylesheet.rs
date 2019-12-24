@@ -10,8 +10,9 @@ pub mod elem_id {
     use tcw3::ui::theming::ClassSet;
 
     pub const WRAPPER: ClassSet = ClassSet::id(1);
-    pub const LABEL: ClassSet = ClassSet::id(2);
-    pub const RED: ClassSet = ClassSet::id(3);
+    pub const LABEL_WRAP: ClassSet = ClassSet::id(2);
+    pub const LABEL: ClassSet = ClassSet::id(3);
+    pub const RED: ClassSet = ClassSet::id(4);
 }
 
 fn new_custom_stylesheet() -> impl Stylesheet {
@@ -65,17 +66,17 @@ fn new_custom_stylesheet() -> impl Stylesheet {
         ([#WRAPPER]) (priority = 100) {
             num_layers: 2,
 
-            layer_bg_color[0]: [0.1, 0.1, 0.1, 0.3].into(),
+            layer_bg_color[0]: [0.1, 0.1, 0.1, 0.4].into(),
             layer_metrics[0]: Metrics {
                 // Extend to fill the titlebar
                 margin: [-100.0, 0.0, 0.0, 0.0],
                 .. Metrics::default()
             },
 
-            layer_bg_color[1]: [0.1, 0.1, 0.1, 0.3].into(),
+            layer_bg_color[1]: [0.1, 0.1, 0.1, 0.4].into(),
             layer_metrics[1]: Metrics {
-                margin: [46.0, 0.0, 0.0, 0.0],
-                .. Metrics::default()
+                margin: [-100.0, 0.0, NAN, 0.0],
+                size: [NAN, 100.0 + 42.0].into(),
             },
 
             subview_metrics[Role::Generic]: Metrics {
@@ -84,20 +85,16 @@ fn new_custom_stylesheet() -> impl Stylesheet {
             },
         },
 
-        ([#LABEL]) (priority = 100) {
+        ([#LABEL_WRAP]) (priority = 100) {
             num_layers: 1,
-            layer_img[0]: Some(himg_from_rounded_rect(
-                [0.54, 0.92, 0.83, 1.0].into(), [[4.0; 2]; 4]
-            )),
-            layer_center[0]: box2! { point: [0.5, 0.5] },
-            layer_metrics[0]: Metrics {
-                margin: [7.0; 4],
-                .. Metrics::default()
-            },
             subview_metrics[Role::Generic]: Metrics {
-                margin: [12.0, NAN, 12.0, 10.0],
+                margin: [8.0, NAN, 12.0, 10.0],
                 .. Metrics::default()
             },
+        },
+
+        ([#LABEL]) (priority = 100) {
+            fg_color: [1.0; 4].into(),
         },
     }
 }

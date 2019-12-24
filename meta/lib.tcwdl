@@ -19,12 +19,13 @@ comp crate::MainView {
 
     const label = Label::new! {
         style_manager = get!(style_manager),
+        class_set = elem_id::LABEL,
         text = get!(&calc_state).value.clone(),
     };
 
     const label_wrapper = StyledBox::new! {
         style_manager = get!(style_manager),
-        class_set = elem_id::LABEL,
+        class_set = elem_id::LABEL_WRAP,
         subview_generic = get!(label.view),
     };
 
