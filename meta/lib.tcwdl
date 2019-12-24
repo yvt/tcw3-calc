@@ -12,7 +12,7 @@ use tcw3::{
 use crate::{CalcButton, CalcState};
 
 comp crate::MainView {
-    const style_manager: &'static Manager { set; }
+    const style_manager: &Manager { set; }
     const wm: pal::Wm { set; }
 
     prop calc_state: CalcState = CalcState::new();
@@ -102,7 +102,7 @@ comp crate::MainView {
 }
 
 comp crate::CalcButton {
-    const style_manager: &'static Manager { set; }
+    const style_manager: &Manager { set; }
     const wm: pal::Wm { set; }
     const op: char { set; get; }
 
