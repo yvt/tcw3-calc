@@ -29,37 +29,37 @@ comp crate::MainView {
         subview_generic = get!(label.view),
     };
 
-    const btn_00 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = 'c' };
-    const btn_01 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = 'C' };
-    const btn_02 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '⌫' };
-    const btn_03 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '÷' };
+    const b00 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = 'c' };
+    const b01 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = 'C' };
+    const b02 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '⌫' };
+    const b03 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '÷' };
 
-    const btn_10 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '7' };
-    const btn_11 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '8' };
-    const btn_12 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '9' };
-    const btn_13 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '×' };
+    const b10 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '7' };
+    const b11 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '8' };
+    const b12 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '9' };
+    const b13 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '×' };
 
-    const btn_20 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '4' };
-    const btn_21 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '5' };
-    const btn_22 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '6' };
-    const btn_23 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '−' };
+    const b20 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '4' };
+    const b21 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '5' };
+    const b22 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '6' };
+    const b23 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '−' };
 
-    const btn_30 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '1' };
-    const btn_31 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '2' };
-    const btn_32 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '3' };
-    const btn_33 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '+' };
+    const b30 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '1' };
+    const b31 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '2' };
+    const b32 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '3' };
+    const b33 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '+' };
 
-    const btn_40 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '±' };
-    const btn_41 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '0' };
-    const btn_42 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '.' };
-    const btn_43 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '=' };
+    const b40 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '±' };
+    const b41 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '0' };
+    const b42 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '.' };
+    const b43 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '=' };
 
     on (
-        btn_00.activated, btn_01.activated, btn_02.activated, btn_03.activated,
-        btn_10.activated, btn_11.activated, btn_12.activated, btn_13.activated,
-        btn_20.activated, btn_21.activated, btn_22.activated, btn_23.activated,
-        btn_30.activated, btn_31.activated, btn_32.activated, btn_33.activated,
-        btn_40.activated, btn_41.activated, btn_42.activated, btn_43.activated,
+        b00.activated, b01.activated, b02.activated, b03.activated,
+        b10.activated, b11.activated, b12.activated, b13.activated,
+        b20.activated, b21.activated, b22.activated, b23.activated,
+        b30.activated, b31.activated, b32.activated, b33.activated,
+        b40.activated, b41.activated, b42.activated, b43.activated,
     ) {
         get!(&this).handle_op(get!(event.op));
     }
@@ -68,16 +68,16 @@ comp crate::MainView {
         flags = Default::default(),
 
         layout = TableLayout::new(
-            vec![
-                get!(btn_00.view), get!(btn_01.view), get!(btn_02.view), get!(btn_03.view),
-                get!(btn_10.view), get!(btn_11.view), get!(btn_12.view), get!(btn_13.view),
-                get!(btn_20.view), get!(btn_21.view), get!(btn_22.view), get!(btn_23.view),
-                get!(btn_30.view), get!(btn_31.view), get!(btn_32.view), get!(btn_33.view),
-                get!(btn_40.view), get!(btn_41.view), get!(btn_42.view), get!(btn_43.view),
+            [
+                get!(&b00.view), get!(&b01.view), get!(&b02.view), get!(&b03.view),
+                get!(&b10.view), get!(&b11.view), get!(&b12.view), get!(&b13.view),
+                get!(&b20.view), get!(&b21.view), get!(&b22.view), get!(&b23.view),
+                get!(&b30.view), get!(&b31.view), get!(&b32.view), get!(&b33.view),
+                get!(&b40.view), get!(&b41.view), get!(&b42.view), get!(&b43.view),
             ]
-                .into_iter()
+                .iter()
                 .enumerate()
-                .map(|(i, v)| (v, [i % 4, i / 4], AlignFlags::JUSTIFY))
+                .map(|(i, &v)| (v.clone(), [i % 4, i / 4], AlignFlags::JUSTIFY))
         )
             .with_uniform_margin(6.0),
     };
