@@ -18,41 +18,41 @@ comp crate::MainView {
     prop calc_state: CalcState = CalcState::new();
 
     const label = Label::new! {
-        style_manager = get!(style_manager),
+        style_manager,
         class_set = elem_id::LABEL,
         text = get!(&calc_state).value.clone(),
     };
 
     const label_wrapper = StyledBox::new! {
-        style_manager = get!(style_manager),
+        style_manager,
         class_set = elem_id::LABEL_WRAP,
         subview_generic = get!(label.view),
     };
 
-    const b00 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = 'c' };
-    const b01 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = 'C' };
-    const b02 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '⌫' };
-    const b03 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '÷' };
+    const b00 = CalcButton::new! { style_manager, wm, op = 'c' };
+    const b01 = CalcButton::new! { style_manager, wm, op = 'C' };
+    const b02 = CalcButton::new! { style_manager, wm, op = '⌫' };
+    const b03 = CalcButton::new! { style_manager, wm, op = '÷' };
 
-    const b10 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '7' };
-    const b11 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '8' };
-    const b12 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '9' };
-    const b13 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '×' };
+    const b10 = CalcButton::new! { style_manager, wm, op = '7' };
+    const b11 = CalcButton::new! { style_manager, wm, op = '8' };
+    const b12 = CalcButton::new! { style_manager, wm, op = '9' };
+    const b13 = CalcButton::new! { style_manager, wm, op = '×' };
 
-    const b20 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '4' };
-    const b21 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '5' };
-    const b22 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '6' };
-    const b23 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '−' };
+    const b20 = CalcButton::new! { style_manager, wm, op = '4' };
+    const b21 = CalcButton::new! { style_manager, wm, op = '5' };
+    const b22 = CalcButton::new! { style_manager, wm, op = '6' };
+    const b23 = CalcButton::new! { style_manager, wm, op = '−' };
 
-    const b30 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '1' };
-    const b31 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '2' };
-    const b32 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '3' };
-    const b33 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '+' };
+    const b30 = CalcButton::new! { style_manager, wm, op = '1' };
+    const b31 = CalcButton::new! { style_manager, wm, op = '2' };
+    const b32 = CalcButton::new! { style_manager, wm, op = '3' };
+    const b33 = CalcButton::new! { style_manager, wm, op = '+' };
 
-    const b40 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '±' };
-    const b41 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '0' };
-    const b42 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '.' };
-    const b43 = CalcButton::new! { style_manager = get!(style_manager), wm = get!(wm), op = '=' };
+    const b40 = CalcButton::new! { style_manager, wm, op = '±' };
+    const b41 = CalcButton::new! { style_manager, wm, op = '0' };
+    const b42 = CalcButton::new! { style_manager, wm, op = '.' };
+    const b43 = CalcButton::new! { style_manager, wm, op = '=' };
 
     on (
         b00.activated, b01.activated, b02.activated, b03.activated,
@@ -81,7 +81,7 @@ comp crate::MainView {
     };
 
     const wrapper = StyledBox::new! {
-        style_manager = get!(style_manager),
+        style_manager,
 
         class_set = elem_id::WRAPPER,
 
@@ -105,7 +105,7 @@ comp crate::CalcButton {
     on (button.activated) { get!(&this).raise_activated(get!(op)); }
 
     const button = Button::new! {
-        style_manager = get!(style_manager),
+        style_manager,
         class_set = match get!(op) {
             'c' | 'C' | '⌫' | '÷' |
             '×' | '−' | '+' | '=' => ClassSet::BUTTON | elem_id::RED,
