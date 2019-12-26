@@ -20,6 +20,13 @@ impl MainView {
     }
 }
 
+/// The calculator logic around `CalcState` was taken from [Druid]'s [`calc.rs`]
+/// example. The original code is owned by The xi-editor Authors and licensed
+/// under the Apache License, Version 2.0. The license text can be found in
+/// `LICENSE-apache`.
+///
+/// [Druid]: https://github.com/xi-editor/druid
+/// [`calc.rs`]: https://github.com/xi-editor/druid/blob/37d49a364d3baf37c06542a9f9db4b582f21e21f/druid/examples/calc.rs
 #[derive(Clone, PartialEq)]
 struct CalcState {
     value: String,
