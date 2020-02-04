@@ -41,6 +41,9 @@ features = ["release_max_level_warn"]
 version = "1.3.0"
 default-features = false
 
+[build-dependencies]
+embed-resource = "1.3.0"
+
 [patch.crates-io.winapi]
 git = "https://github.com/yvt/winapi-rs.git"
 rev = "a6df41df91d6b8c156cff69bede2da2196c663cb"
