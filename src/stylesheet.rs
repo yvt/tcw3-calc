@@ -1,8 +1,9 @@
 use cggeom::box2;
 use tcw3::{
-    stylesheet,
     images::himg_from_rounded_rect,
-    ui::theming::{Manager, Metrics, Stylesheet, Role},
+    pal::LayerFlags,
+    stylesheet,
+    ui::theming::{Manager, Metrics, Role, Stylesheet},
 };
 
 /// Define styling ID values.
@@ -72,6 +73,7 @@ fn new_custom_stylesheet() -> impl Stylesheet {
                 margin: [-100.0, 0.0, 0.0, 0.0],
                 .. Metrics::default()
             },
+            layer_flags[0]: LayerFlags::BACKDROP_BLUR,
 
             layer_bg_color[1]: [0.1, 0.1, 0.1, 0.4].into(),
             layer_metrics[1]: Metrics {

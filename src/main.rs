@@ -2,8 +2,8 @@ use log::debug;
 use tcw3::{
     pal,
     pal::prelude::*,
-    uicore::{HWnd, WndListener},
-    ui::{AlignFlags, layouts::TableLayout, theming::ClassSet},
+    ui::{layouts::TableLayout, theming::ClassSet, AlignFlags},
+    uicore::{HWnd, WndListener, WndStyleFlags},
 };
 
 mod stylesheet;
@@ -148,6 +148,7 @@ fn main() {
     let wnd = HWnd::new(wm);
     wnd.set_visibility(true);
     wnd.set_listener(MyWndListener);
+    wnd.set_style_flags(WndStyleFlags::default() | WndStyleFlags::TRANSPARENT_BACKDROP_BLUR);
 
     if cfg!(target_os = "macos") {
         wnd.set_caption("");

@@ -1,5 +1,3 @@
-cargo-features = ["profile-overrides"]  # Enable the use of `[profile.dev.overrides]`
-
 [workspace]
 
 [profile.release]
@@ -28,11 +26,11 @@ tcw3_calc_meta = { path = "meta" }
 
 [dependencies.tcw3]
 git = "https://github.com/yvt/Stella2.git"
-rev = "5e84e84b625b2534c3b8e8a2809661499667cfe6"
+rev = "1913e5b728e902e1bc1b6c5d19045a2f02e974c9"
 
 [dependencies.cggeom]
 git = "https://github.com/yvt/Stella2.git"
-rev = "5e84e84b625b2534c3b8e8a2809661499667cfe6"
+rev = "1913e5b728e902e1bc1b6c5d19045a2f02e974c9"
 
 [dependencies.log]
 version = "0.4"
@@ -42,3 +40,7 @@ features = ["release_max_level_warn"]
 [dependencies.simple_logger]
 version = "1.3.0"
 default-features = false
+
+[patch.crates-io.winapi]
+git = "https://github.com/yvt/winapi-rs.git"
+rev = "a6df41df91d6b8c156cff69bede2da2196c663cb"
